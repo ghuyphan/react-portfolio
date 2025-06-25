@@ -103,9 +103,9 @@ const Footer: React.FC = () => {
 function Deck() {
     const deckRef = useRef<HTMLDivElement>(null);
     const [gone] = useState<Set<number>>(() => new Set());
-    const [props, api] = useSprings(cardsData.length, i => ({
-        x: 0, y: 0, scale: 1, rot: 0, opacity: 1,
-    }));
+const [props, api] = useSprings(cardsData.length, i => ({
+    x: i * 10, y: 0, scale: 1, rot: 0, opacity: 1,
+}));
 
     useEffect(() => {
         const handleScroll = () => {
@@ -154,7 +154,7 @@ function Deck() {
     return (
         <div className="deck-container" ref={deckRef}>
             {props.map(({ x, y, rot, scale, opacity }, i) => (
-                <animated.div className="card-flipper" key={i} style={{ x, y, zIndex: cardsData.length - i, opacity: opacity as any }}>
+                <animated.div className="card-flipper" key={i} style={{ x, y, zIndex: cardsData.length - i, opacity: opacity }}>
                     <animated.div {...bind(i)} className="card-content" style={{ transform: interpolate([rot, scale], trans) }}>
                         <div className="card-icon">{cardsData[i].logo || cardsData[i].icon}</div>
                         <h2 className="card-title">{cardsData[i].title}</h2>
