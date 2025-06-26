@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSprings, animated, to as interpolate } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
+import siteLogo from './assets/logo.png';
 import type { JSX } from 'react';
 import './styles.css';
 
@@ -52,7 +53,7 @@ const trans = (r: number, s: number): string => `perspective(1500px) rotateX(10d
 // --- UPDATED Logo Component ---
 const SimpleLogo: React.FC = () => (
     <img 
-        src="https://lh3.googleusercontent.com/d/1000_NYDDb6onAXqGwevUESyOWwEylz1kTLaWQWWWvCnChnutoIj8gbnjtoYbXM_EDS5JTesDs4I7qolN_lGn8ux3P7ruSZWrYupfZc" 
+        src={siteLogo}  // Use the imported variable here
         alt="Site Logo" 
         width="32" 
         height="32"
