@@ -165,12 +165,11 @@ const GitLogo: React.FC = () => <LogoImage src="https://git-scm.com/images/logos
 const SapUi5Logo: React.FC = () => <LogoImage src={sapUI5LogoAsset} alt="SAPUI5 Logo" className="sapui5-logo-img" />;
 const SapAbapLogo: React.FC = () => <LogoImage src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP ABAP Logo" />;
 
-// --- DATA ---
-// In your App.jsx
+// --- DATA (UPDATED WITH GRAMMAR FIXES) ---
 const projects: Project[] = [
   {
     name: 'Orange Pass',
-    description: 'A secure QR code management system for seamless event check-ins.', // This one is already great!
+    description: 'A secure QR code management system for seamless event check-ins.',
     icon: <ProjectIconPlaceholder />,
     span: 'col-span-2',
     link: 'https://github.com/ghuyphan/Orange-Pass',
@@ -204,6 +203,7 @@ const cardsData: CardData[] = [
   { id: 'hahaho', title: 'HAHAHO Digital (2022)', content: 'As a Business Analyst, I translated complex business needs into actionable technical specifications, bridging the gap between stakeholders and the development team.', icon: null, logo: <HahahoLogo /> },
   { id: 'fpt', title: 'FPT Software (2022-Present)', content: 'I develop enterprise-grade solutions, from SAP Fiori apps to Salesforce Lightning Web Components, while focusing on creating intuitive and maintainable systems.', icon: null, logo: <FptLogo /> },
 ].reverse();
+
 
 const technologies: Tech[] = [
   { name: 'HTML5', component: <HtmlLogo /> },
@@ -322,32 +322,37 @@ function Deck() {
   );
 }
 
+// ================================================================
+// ===== START: UPDATED BENTO CARD COMPONENT WITH GLOW FIX ======
+// ================================================================
 const BentoCard: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
-    const cardRef = useRef<HTMLAnchorElement>(null);
+    const cardContentRef = useRef<HTMLDivElement>(null);
 
-    const onMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        const rect = cardRef.current?.getBoundingClientRect();
+    const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        const rect = cardContentRef.current?.getBoundingClientRect();
         if (rect) {
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            cardRef.current?.style.setProperty('--x', `${x}px`);
-            cardRef.current?.style.setProperty('--y', `${y}px`);
+            cardContentRef.current?.style.setProperty('--x', `${x}px`);
+            cardContentRef.current?.style.setProperty('--y', `${y}px`);
         }
     };
 
     return (
         <a
-            ref={cardRef}
             href={project.link}
             key={project.name}
             target="_blank"
             rel="noopener noreferrer"
             className={`bento-card ${project.span}`}
             style={{ transitionDelay: `${index * 100}ms` }}
-            onMouseMove={onMouseMove}
         >
-            <div className="bento-glow"></div>
-            <div className="bento-card-content">
+            <div
+                ref={cardContentRef}
+                className="bento-card-content"
+                onMouseMove={onMouseMove}
+            >
+                <div className="bento-glow"></div>
                 {project.icon}
                 <div className="bento-text-wrapper">
                     <p className="bento-card-title">{project.name}</p>
@@ -360,6 +365,9 @@ const BentoCard: React.FC<{ project: Project; index: number }> = ({ project, ind
         </a>
     );
 };
+// ================================================================
+// ===== END: UPDATED BENTO CARD COMPONENT ========================
+// ================================================================
 
 function ProjectsSection() {
     const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
@@ -378,21 +386,14 @@ function ProjectsSection() {
     );
 }
 
-// ================================================================
-// ===== START: UPDATED TECH SHOWCASE FOR TWO SCROLLING ROWS =====
-// ================================================================
-
-// A new reusable Scroller component to keep our code clean
 const Scroller: React.FC<{ items: Tech[]; direction?: 'normal' | 'reverse' }> = ({ items, direction = 'normal' }) => {
     const scrollerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const scroller = scrollerRef.current;
-        // Prefers-reduced-motion check to disable animation for users who want it
         if (!scroller || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             return;
         }
-        // Set attributes for CSS to control animation
         scroller.setAttribute("data-animated", "true");
         scroller.setAttribute("data-direction", direction);
     }, [direction]);
@@ -400,14 +401,12 @@ const Scroller: React.FC<{ items: Tech[]; direction?: 'normal' | 'reverse' }> = 
     return (
         <div className="tech-scroller" ref={scrollerRef}>
             <div className="tech-scroller-inner">
-                {/* Render the items once */}
                 {items.map((tech) => (
                     <div className="tech-item" key={tech.name}>
                         <div className="tech-logo">{tech.component}</div>
                         <span className="tech-name">{tech.name}</span>
                     </div>
                 ))}
-                {/* Render them a second time for the infinite loop illusion */}
                 {items.map((tech) => (
                     <div className="tech-item" key={`${tech.name}-clone`} aria-hidden="true">
                         <div className="tech-logo">{tech.component}</div>
@@ -422,7 +421,6 @@ const Scroller: React.FC<{ items: Tech[]; direction?: 'normal' | 'reverse' }> = 
 const TechShowcase: React.FC = () => {
     const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 
-    // Split the technologies array into two halves
     const middleIndex = Math.ceil(technologies.length / 2);
     const firstRow = technologies.slice(0, middleIndex);
     const secondRow = technologies.slice(middleIndex);
@@ -441,10 +439,6 @@ const TechShowcase: React.FC = () => {
         </section>
     );
 };
-// ================================================================
-// ===== END: UPDATED TECH SHOWCASE ===============================
-// ================================================================
-
 
 const HeroSection: React.FC = () => {
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
