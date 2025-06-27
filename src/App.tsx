@@ -166,31 +166,32 @@ const SapUi5Logo: React.FC = () => <LogoImage src={sapUI5LogoAsset} alt="SAPUI5 
 const SapAbapLogo: React.FC = () => <LogoImage src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP ABAP Logo" />;
 
 // --- DATA ---
+// In your App.jsx
 const projects: Project[] = [
   {
     name: 'Orange Pass',
-    description: 'A secure QR code management system for seamless event check-ins.',
+    description: 'A secure QR code management system for seamless event check-ins.', // This one is already great!
     icon: <ProjectIconPlaceholder />,
     span: 'col-span-2',
     link: 'https://github.com/ghuyphan/Orange-Pass',
   },
   {
     name: 'Orange 2',
-    description: 'A personal finance companion with smart categorization and data viz.',
+    description: 'A personal finance tracker with smart expense categorization and data visualization.',
     icon: <ProjectIconPlaceholder />,
     span: 'col-span-1',
     link: 'https://github.com/ghuyphan/Orange-2',
   },
   {
     name: 'Apollo',
-    description: 'A language learning app using bite-sized videos to improve retention.',
+    description: 'A language learning app that uses bite-sized videos to enhance memory retention.',
     icon: <ProjectIconPlaceholder />,
     span: 'col-span-1',
     link: 'https://github.com/ghuyphan/Apollo',
   },
   {
     name: 'Petty',
-    description: 'Discover and share locations with friends in real-time.',
+    description: 'An app to discover and share your favorite locations with friends in real-time.',
     icon: <ProjectIconPlaceholder />,
     span: 'col-span-2',
     link: 'https://github.com/ghuyphan/Petty',
@@ -198,10 +199,10 @@ const projects: Project[] = [
 ];
 
 const cardsData: CardData[] = [
-  { id: 'skills', title: 'My Tech Arsenal', content: 'From React Native to SAP ABAP, I love exploring different tech stacks. Currently focused on TypeScript and building scalable mobile experiences with Redux.', icon: <CodeIcon />, logo: null },
-  { id: 'projects', title: 'Personal Projects', content: 'I build apps that solve real-world problems. Each project is an opportunity to refine my skills in user experience and product design.', icon: <RocketIcon />, logo: null },
-  { id: 'hahaho', title: 'HAHAHO Digital (2022)', content: 'As a Business Analyst, I learned to translate complex business needs into actionable technical specifications, bridging the gap between stakeholders and developers.', icon: null, logo: <HahahoLogo /> },
-  { id: 'fpt', title: 'FPT Software (2022-Present)', content: 'Currently developing enterprise-grade solutions, from SAP Fiori apps to Salesforce Lightning Web Components. Focused on creating intuitive and maintainable systems.', icon: null, logo: <FptLogo /> },
+  { id: 'skills', title: 'My Tech Arsenal', content: 'From React Native to SAP ABAP, I enjoy exploring diverse tech stacks. My current focus is on TypeScript and building scalable mobile experiences with Redux.', icon: <CodeIcon />, logo: null },
+  { id: 'projects', title: 'Personal Projects', content: 'I build apps that solve real-world problems. Each project is an opportunity to refine my skills in both user experience and product design.', icon: <RocketIcon />, logo: null },
+  { id: 'hahaho', title: 'HAHAHO Digital (2022)', content: 'As a Business Analyst, I translated complex business needs into actionable technical specifications, bridging the gap between stakeholders and the development team.', icon: null, logo: <HahahoLogo /> },
+  { id: 'fpt', title: 'FPT Software (2022-Present)', content: 'I develop enterprise-grade solutions, from SAP Fiori apps to Salesforce Lightning Web Components, while focusing on creating intuitive and maintainable systems.', icon: null, logo: <FptLogo /> },
 ].reverse();
 
 const technologies: Tech[] = [
