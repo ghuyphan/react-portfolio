@@ -34,7 +34,24 @@ body,
 
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     scroll-behavior: smooth;
+
+    /* ADDED: Base font size for scalable rem units */
+    font-size: 16px;
 }
+
+/* ADDED: Media queries to scale down the root font size on smaller screens */
+@media (max-width: 1200px) {
+    :root {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    :root {
+        font-size: 14px;
+    }
+}
+
 
 body.theme-dark {
     --bg-color: #020617;
@@ -144,7 +161,6 @@ body {
     gap: 2rem;
 }
 
-/* ENHANCED: Liquid glass header button styling */
 .header-link {
     color: var(--text-color);
     text-decoration: none;
@@ -226,7 +242,6 @@ body {
     transform: translateY(-2px) scale(0.98);
 }
 
-/* ENHANCED: Liquid glass theme toggle styling */
 .animated-theme-toggle {
     width: 44px;
     height: 44px;
@@ -418,7 +433,6 @@ body {
     margin-top: 1rem;
 }
 
-/* ENHANCED: Liquid glass contact icon styling */
 .contact-icon-link {
     color: var(--subtle-text-color);
     width: 44px;
@@ -534,7 +548,6 @@ body {
     justify-content: center;
 }
 
-/* ENHANCED: Unified deck card styling */
 .deck-card-container {
     touch-action: none;
     width: 360px;
@@ -681,12 +694,13 @@ body.theme-dark .sapui5-logo-img {
 
 .tech-item {
     padding: 1.25rem 2rem;
-    background: rgba(var(--bg-color-rgb), 0.5);
+    /* background: rgba(var(--bg-color-rgb), 0.5); */
     border-radius: 0.75rem;
     display: flex;
     align-items: center;
     gap: 1.25rem;
     transition: background-color 0.4s ease, transform 0.3s ease;
+    flex-shrink: 0;
 }
 
 .tech-item:hover {
@@ -714,9 +728,7 @@ body.theme-dark .sapui5-logo-img {
     white-space: nowrap;
 }
 
-/* ================================================================== */
-/* ========== ENHANCED BENTO GRID STYLES (UNIFIED HOVER) =========== */
-/* ================================================================== */
+/* --- BENTO GRID --- */
 #projects .section-title {
     text-align: left;
 }
@@ -733,7 +745,6 @@ body.theme-dark .sapui5-logo-img {
     margin: 0 auto;
 }
 
-/* ENHANCED: Unified bento card styling */
 .bento-card {
     position: relative;
     display: flex;
@@ -884,11 +895,11 @@ body.theme-dark .sapui5-logo-img {
     transform: translateX(5px);
 }
 
-/* ================================================================ */
-/* ============= END: ENHANCED BENTO GRID STYLES ================== */
-/* ================================================================ */
+/* ================================================================== */
+/* ========= UPDATED & ENHANCED MEDIA QUERIES FOR RESPONSIVENESS ===== */
+/* ================================================================== */
 
-/* --- MEDIA QUERIES --- */
+/* For smaller tablets and large phones (landscape) */
 @media (max-width: 900px) {
     .bento-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -899,35 +910,144 @@ body.theme-dark .sapui5-logo-img {
         grid-column: span 1 / span 1;
         aspect-ratio: 1 / 1;
     }
+
+    .deck-container {
+        height: 400px;
+    }
+
+    .deck-card-container {
+        width: 320px;
+        height: 420px;
+    }
+
+    .card-title {
+        font-size: 1.4rem;
+    }
+    
+    .card-paragraph {
+        font-size: 1rem;
+    }
 }
 
+/* For standard mobile devices (portrait and landscape tablets) */
 @media (max-width: 768px) {
+    .main-content {
+        padding: 0 1.5rem;
+    }
+
+    .content-section {
+        padding: 4rem 0;
+    }
+
+    .section-title {
+        font-size: clamp(1.8rem, 7vw, 2.2rem);
+        margin-bottom: 2.5rem;
+    }
+
     .hero-section {
-        max-width: 100%;
-        min-height: 60vh;
+        min-height: auto;
+        text-align: center;
+        align-items: center;
+        padding: 4rem 0;
+    }
+
+    .hero-main-heading {
+        font-size: clamp(2.5rem, 12vw, 3.5rem);
+    }
+
+    .hero-description {
+        font-size: clamp(1rem, 4vw, 1.1rem);
+        margin: 1.5rem 0;
+        max-width: 95%;
+    }
+
+    .contact-info-container {
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .contact-icon-link {
+        width: 48px;
+        height: 48px;
+    }
+
+     .contact-icon-link svg {
+        width: 24px;
+        height: 24px;
     }
 
     #projects .section-title {
         text-align: center;
     }
 
+    .projects-title-wrapper {
+        margin-bottom: 2.5rem;
+    }
+
     .footer-inner {
         flex-direction: column;
-        justify-content: center;
         text-align: center;
-        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .header-inner {
+        padding: 1rem 1.5rem;
     }
 
     .header-nav {
-        gap: 1rem;
+       display: none;
     }
 
-    .contact-info-container {
-        gap: 1rem;
+    .deck-container {
+        height: auto;
+        min-height: 450px;
+        margin-bottom: 2rem;
+    }
+
+    .deck-card-container {
+        width: 80vw;
+        max-width: 320px;
+        height: 420px;
+    }
+
+    .card-content {
+        padding: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .card-paragraph {
+        font-size: 0.95rem;
+    }
+
+    .tech-item {
+        padding: 1.25rem 1.75rem;
+        gap: 1.25rem;
+    }
+
+    .tech-logo {
+        height: 36px;
+        width: 36px;
+    }
+
+    .tech-name {
+        font-size: 1.1rem;
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .col-span-1, .col-span-2 {
+        grid-column: span 1 / span 1;
+        aspect-ratio: 16 / 12;
     }
 }
 
-@media (max-width: 640px) {
+/* For small mobile devices */
+@media (max-width: 480px) {
     .main-content {
         padding: 0 1rem;
     }
@@ -936,48 +1056,103 @@ body.theme-dark .sapui5-logo-img {
         padding: 1rem;
     }
 
-    .header-nav {
-        gap: 0.75rem;
+    .hero-greeting {
+        font-size: clamp(0.9rem, 4vw, 1rem);
     }
 
-    .footer-inner {
-        padding: 2rem 1rem;
+    .hero-main-heading {
+        font-size: clamp(2.2rem, 10vw, 3rem);
     }
 
-    .bento-card-title {
-        font-size: 1.25rem;
+    .hero-description {
+        font-size: clamp(0.9rem, 4.5vw, 1rem);
     }
 
-    .bento-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .col-span-2 {
-        aspect-ratio: 16 / 10;
-    }
-
-    .header-link {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
-    }
-
-    .animated-theme-toggle {
-        width: 36px;
-        height: 36px;
-    }
-
-    .animated-theme-toggle .icon {
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
-    }
-
-    .animated-theme-toggle[data-theme="dark"] .icons-wrapper {
-        transform: translateY(-36px);
+     .contact-info-container {
+        gap: 1.25rem;
     }
 
     .contact-icon-link {
-        width: 36px;
-        height: 36px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .contact-icon-link svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .deck-container {
+       min-height: 420px;
+    }
+
+    .deck-card-container {
+        width: 85vw;
+        max-width: 280px;
+        height: 400px;
+    }
+
+     .card-content {
+        padding: 1.25rem;
+    }
+
+    .card-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+    }
+
+    .card-paragraph {
+        font-size: 0.9rem;
+    }
+
+    .bento-card-title {
+        font-size: 1.2rem;
+    }
+
+    .bento-card-description {
+        font-size: 0.9rem;
+    }
+
+    .bento-card-arrow svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .tech-scroller {
+      -webkit-mask: linear-gradient(90deg, transparent, white 15%, white 85%, transparent);
+      mask: linear-gradient(90deg, transparent, white 15%, white 85%, transparent);
+    }
+    
+    .tech-scroller-inner {
+        gap: 1.5rem;
+    }
+
+    .tech-item {
+        padding: 1rem 1.25rem;
+        gap: 1rem;
+    }
+
+    .tech-logo {
+        height: 32px;
+        width: 32px;
+    }
+
+    .tech-name {
+        font-size: 1rem;
+    }
+}
+
+
+/* Hide header navigation and show a hamburger menu instead (requires JS to implement) */
+@media (max-width: 768px) {
+    .header-nav {
+        /* This is correctly hiding your navigation on smaller screens.
+           You would add a mobile-menu-button to your React component
+           and style it here to be visible. */
+        display: none; 
     }
 }

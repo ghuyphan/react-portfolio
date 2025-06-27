@@ -384,6 +384,7 @@ function ProjectsSection() {
 
 const TechShowcase: React.FC = () => {
     const scrollerRef = useRef<HTMLDivElement>(null);
+    const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 }); // Added for scroll effect
 
     useEffect(() => {
         const scroller = scrollerRef.current;
@@ -403,7 +404,11 @@ const TechShowcase: React.FC = () => {
     }, []);
 
     return (
-        <section className="content-section" aria-label="Technologies I use">
+        <section 
+            className={`content-section animated-section ${isVisible ? 'is-visible' : ''}`} // Apply classes
+            aria-label="Technologies I use" 
+            ref={sectionRef} // Attach ref
+        >
             <div className="tech-showcase-container">
                 <h2 className="section-title">My Tech Stack</h2>
                 <div className="tech-scroller" ref={scrollerRef}>
@@ -422,8 +427,13 @@ const TechShowcase: React.FC = () => {
 };
 
 const HeroSection: React.FC = () => {
+  const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 }); // Added for scroll effect
+
   return (
-    <section className="hero-section">
+    <section 
+      className={`hero-section animated-section ${isVisible ? 'is-visible' : ''}`} // Apply classes
+      ref={sectionRef} // Attach ref
+    >
       <p className="hero-greeting">Hello, world! I'm</p>
       <h1 className="hero-main-heading">
         <span className="gradient-text">Gia Huy.</span><br />I build for web & mobile.
