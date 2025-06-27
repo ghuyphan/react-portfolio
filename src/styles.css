@@ -552,7 +552,7 @@ body {
 }
 
 .deck-card-container {
-    touch-action: none;
+    touch-action: pan-y;
     width: 360px;
     height: 470px;
     will-change: transform;
