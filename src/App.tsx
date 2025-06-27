@@ -90,7 +90,6 @@ const ArrowRightIcon: React.FC = () => (
     </svg>
 );
 
-// --- NEW PROJECT ICON PLACEHOLDER ---
 const ProjectIconPlaceholder: React.FC = () => (
     <div className="project-icon-placeholder">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -227,12 +226,13 @@ const trans = (r: number, s: number) => `perspective(1500px) rotateX(30deg) rota
 
 
 // --- PAGE COMPONENTS ---
+
+// UPDATED: Removed fixed width/height and added a className for responsive styling
 const SimpleLogo: React.FC = () => (
-  <img src={siteLogo} alt="Site Logo" width="50" height="50" style={{ borderRadius: '6px' }} />
+  <img src={siteLogo} alt="Site Logo" className="header-logo-img" style={{ borderRadius: '6px' }} />
 );
 
 const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, isScrolled }) => {
-//   const scrollToContact = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   const headerClassName = `app-header ${isScrolled ? 'scrolled' : ''}`;
   
   return (
@@ -242,7 +242,6 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme, isScrolled }) => 
         <nav className="header-nav">
           <a href="#work" className="header-link">WORK</a>
           <a href="#projects" className="header-link">PROJECTS</a>
-          {/* <button onClick={scrollToContact} className="header-link">CONTACT</button> */}
           <button onClick={onToggleTheme} className="animated-theme-toggle" data-theme={theme} aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}>
             <div className="icons-wrapper">
               <div className="icon">☀️</div>
@@ -280,25 +279,33 @@ function Deck() {
   const [gone] = useState(() => new Set());
   const [props, api] = useSprings(cardsData.length, i => ({ ...to(i), from: from(i) }));
 
-  const bind = useDrag(({ args: [index], active, movement: [mx], direction: [xDir], velocity: [vx] }) => {
-    const trigger = vx > 0.2;
-    const dir = xDir < 0 ? -1 : 1;
-    if (!active && trigger) gone.add(index);
-    api.start(i => {
-      if (index !== i) return;
-      const isGone = gone.has(index);
-      const x = isGone ? (200 + window.innerWidth) * dir : active ? mx : 0;
-      const rot = mx / 100 + (isGone ? dir * 10 * vx : 0);
-      const scale = active ? 1.1 : 1;
-      return { x, rot, scale, delay: undefined, config: { friction: 50, tension: active ? 800 : isGone ? 200 : 500 } };
-    });
-    if (!active && gone.size === cardsData.length) {
-      setTimeout(() => {
-        gone.clear();
-        api.start(i => to(i));
-      }, 600);
+  // UPDATED: Added configuration to useDrag to prevent conflicts with vertical scrolling on mobile
+  const bind = useDrag(
+    ({ args: [index], active, movement: [mx], direction: [xDir], velocity: [vx] }) => {
+      const trigger = vx > 0.2;
+      const dir = xDir < 0 ? -1 : 1;
+      if (!active && trigger) gone.add(index);
+      api.start(i => {
+        if (index !== i) return;
+        const isGone = gone.has(index);
+        const x = isGone ? (200 + window.innerWidth) * dir : active ? mx : 0;
+        const rot = mx / 100 + (isGone ? dir * 10 * vx : 0);
+        const scale = active ? 1.1 : 1;
+        return { x, rot, scale, delay: undefined, config: { friction: 50, tension: active ? 800 : isGone ? 200 : 500 } };
+      });
+      if (!active && gone.size === cardsData.length) {
+        setTimeout(() => {
+          gone.clear();
+          api.start(i => to(i));
+        }, 600);
+      }
+    },
+    {
+      axis: 'x', // Only capture horizontal movement
+      filterTaps: true, // Ignore single taps
+      pointer: { touch: true }, // Apply this logic only to touch events
     }
-  });
+  );
 
   return (
     <>
@@ -316,10 +323,6 @@ function Deck() {
     </>
   );
 }
-
-// ==================================================================
-// ===== START: Updated Projects Section & New BentoCard Component =====
-// ==================================================================
 
 const BentoCard: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
     const cardRef = useRef<HTMLAnchorElement>(null);
@@ -377,14 +380,10 @@ function ProjectsSection() {
     );
 }
 
-// ================================================================
-// ===== END: Updated Projects Section & New BentoCard Component =====
-// ================================================================
-
 
 const TechShowcase: React.FC = () => {
     const scrollerRef = useRef<HTMLDivElement>(null);
-    const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 }); // Added for scroll effect
+    const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 
     useEffect(() => {
         const scroller = scrollerRef.current;
@@ -405,9 +404,9 @@ const TechShowcase: React.FC = () => {
 
     return (
         <section 
-            className={`content-section animated-section ${isVisible ? 'is-visible' : ''}`} // Apply classes
+            className={`content-section animated-section ${isVisible ? 'is-visible' : ''}`}
             aria-label="Technologies I use" 
-            ref={sectionRef} // Attach ref
+            ref={sectionRef}
         >
             <div className="tech-showcase-container">
                 <h2 className="section-title">My Tech Stack</h2>
@@ -427,12 +426,12 @@ const TechShowcase: React.FC = () => {
 };
 
 const HeroSection: React.FC = () => {
-  const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 }); // Added for scroll effect
+  const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 
   return (
     <section 
-      className={`hero-section animated-section ${isVisible ? 'is-visible' : ''}`} // Apply classes
-      ref={sectionRef} // Attach ref
+      className={`hero-section animated-section ${isVisible ? 'is-visible' : ''}`}
+      ref={sectionRef}
     >
       <p className="hero-greeting">Hello, world! I'm</p>
       <h1 className="hero-main-heading">
