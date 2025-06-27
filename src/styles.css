@@ -35,11 +35,9 @@ body,
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     scroll-behavior: smooth;
 
-    /* Base font size for scalable rem units */
     font-size: 16px;
 }
 
-/* Media queries to scale down the root font size on smaller screens */
 @media (max-width: 1200px) {
     :root {
         font-size: 15px;
@@ -142,7 +140,6 @@ body {
     padding: 0.5rem;
 }
 
-/* ADDED: Styling for the header logo image itself */
 .header-logo-img {
     width: 50px;
     height: 50px;
@@ -155,7 +152,8 @@ body {
 }
 
 .header-logo-link:hover .header-logo-img {
-    filter: drop-shadow(0 4px 12px rgba(var(--glow-color-2-rgb), 0.4)) drop-shadow(0 2px 6px rgba(var(--glow-color-1-rgb), 0.3));
+    filter: drop-shadow(0 4px 12px rgba(var(--glow-color-2-rgb), 0.4)) 
+            drop-shadow(0 2px 6px rgba(var(--glow-color-1-rgb), 0.3));
 }
 
 .header-nav {
@@ -170,9 +168,9 @@ body {
     font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 0.05em;
-    background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.1),
-            rgba(255, 255, 255, 0.05));
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1), 
+        rgba(255, 255, 255, 0.05));
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -182,7 +180,7 @@ body {
     position: relative;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow:
+    box-shadow: 
         0 4px 8px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -194,9 +192,9 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg,
-            rgba(var(--glow-color-1-rgb), 0.3),
-            rgba(var(--glow-color-2-rgb), 0.3));
+    background: linear-gradient(135deg, 
+        rgba(var(--glow-color-1-rgb), 0.3), 
+        rgba(var(--glow-color-2-rgb), 0.3));
     opacity: 0;
     transition: all 0.4s ease;
     border-radius: 2rem;
@@ -209,10 +207,10 @@ body {
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(45deg,
-            rgba(var(--glow-color-1-rgb), 0.6),
-            rgba(var(--glow-color-2-rgb), 0.6),
-            rgba(var(--glow-color-1-rgb), 0.6));
+    background: linear-gradient(45deg, 
+        rgba(var(--glow-color-1-rgb), 0.6),
+        rgba(var(--glow-color-2-rgb), 0.6),
+        rgba(var(--glow-color-1-rgb), 0.6));
     border-radius: 2rem;
     opacity: 0;
     z-index: -1;
@@ -223,11 +221,11 @@ body {
 .header-link:hover {
     color: var(--heading-color);
     transform: translateY(-4px) scale(1.02);
-    background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.2),
-            rgba(255, 255, 255, 0.1));
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.2), 
+        rgba(255, 255, 255, 0.1));
     border-color: rgba(var(--glow-color-2-rgb), 0.4);
-    box-shadow:
+    box-shadow: 
         0 12px 32px -8px rgba(var(--glow-color-1-rgb), 0.4),
         0 6px 16px -4px rgba(var(--glow-color-2-rgb), 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -250,9 +248,9 @@ body {
     height: 44px;
     overflow: hidden;
     position: relative;
-    background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.1),
-            rgba(255, 255, 255, 0.05));
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1), 
+        rgba(255, 255, 255, 0.05));
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -261,7 +259,7 @@ body {
     color: var(--text-color);
     border-radius: 50%;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow:
+    box-shadow: 
         0 4px 8px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -273,9 +271,9 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg,
-            rgba(var(--glow-color-1-rgb), 0.3),
-            rgba(var(--glow-color-2-rgb), 0.3));
+    background: linear-gradient(135deg, 
+        rgba(var(--glow-color-1-rgb), 0.3), 
+        rgba(var(--glow-color-2-rgb), 0.3));
     opacity: 0;
     transition: all 0.4s ease;
     border-radius: 50%;
@@ -288,10 +286,10 @@ body {
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(45deg,
-            rgba(var(--glow-color-1-rgb), 0.6),
-            rgba(var(--glow-color-2-rgb), 0.6),
-            rgba(var(--glow-color-1-rgb), 0.6));
+    background: linear-gradient(45deg, 
+        rgba(var(--glow-color-1-rgb), 0.6),
+        rgba(var(--glow-color-2-rgb), 0.6),
+        rgba(var(--glow-color-1-rgb), 0.6));
     border-radius: 50%;
     opacity: 0;
     z-index: -1;
@@ -302,11 +300,11 @@ body {
 .animated-theme-toggle:hover {
     color: var(--heading-color);
     transform: translateY(-4px) scale(1.05);
-    background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.2),
-            rgba(255, 255, 255, 0.1));
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.2), 
+        rgba(255, 255, 255, 0.1));
     border-color: rgba(var(--glow-color-2-rgb), 0.4);
-    box-shadow:
+    box-shadow: 
         0 12px 32px -8px rgba(var(--glow-color-1-rgb), 0.4),
         0 6px 16px -4px rgba(var(--glow-color-2-rgb), 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -443,9 +441,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.1),
-            rgba(255, 255, 255, 0.05));
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1), 
+        rgba(255, 255, 255, 0.05));
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -453,37 +451,37 @@ body {
     position: relative;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow:
+    box-shadow: 
         0 4px 8px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-.contact-icon-link::before {
+.contact-icon-link::before, .animated-theme-toggle::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg,
-            rgba(var(--glow-color-1-rgb), 0.3),
-            rgba(var(--glow-color-2-rgb), 0.3));
+    background: linear-gradient(135deg, 
+        rgba(var(--glow-color-1-rgb), 0.3), 
+        rgba(var(--glow-color-2-rgb), 0.3));
     opacity: 0;
     transition: all 0.4s ease;
     border-radius: 50%;
 }
 
-.contact-icon-link::after {
+.contact-icon-link::after, .animated-theme-toggle::after {
     content: '';
     position: absolute;
     top: -2px;
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(45deg,
-            rgba(var(--glow-color-1-rgb), 0.6),
-            rgba(var(--glow-color-2-rgb), 0.6),
-            rgba(var(--glow-color-1-rgb), 0.6));
+    background: linear-gradient(45deg, 
+        rgba(var(--glow-color-1-rgb), 0.6),
+        rgba(var(--glow-color-2-rgb), 0.6),
+        rgba(var(--glow-color-1-rgb), 0.6));
     border-radius: 50%;
     opacity: 0;
     z-index: -1;
@@ -491,30 +489,31 @@ body {
     transition: opacity 0.4s ease;
 }
 
-.contact-icon-link:hover {
+.contact-icon-link:hover, .animated-theme-toggle:hover {
     color: var(--heading-color);
     transform: translateY(-4px) scale(1.05);
-    background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.2),
-            rgba(255, 255, 255, 0.1));
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.2), 
+        rgba(255, 255, 255, 0.1));
     border-color: rgba(var(--glow-color-2-rgb), 0.4);
-    box-shadow:
+    box-shadow: 
         0 12px 32px -8px rgba(var(--glow-color-1-rgb), 0.4),
         0 6px 16px -4px rgba(var(--glow-color-2-rgb), 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-.contact-icon-link:hover::before {
+.contact-icon-link:hover::before, .animated-theme-toggle:hover::before {
     opacity: 1;
 }
 
-.contact-icon-link:hover::after {
+.contact-icon-link:hover::after, .animated-theme-toggle:hover::after {
     opacity: 1;
 }
 
-.contact-icon-link:active {
+.contact-icon-link:active, .animated-theme-toggle:active {
     transform: translateY(-2px) scale(0.95);
 }
+
 
 /* --- ANIMATED SECTIONS --- */
 .animated-section {
@@ -552,7 +551,7 @@ body {
 }
 
 .deck-card-container {
-    touch-action: pan-y;
+    touch-action: pan-y; /* UPDATED: Allows vertical scroll while capturing horizontal drag */
     width: 360px;
     height: 470px;
     will-change: transform;
@@ -569,9 +568,9 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg,
-            rgba(var(--glow-color-1-rgb), 0.1),
-            rgba(var(--glow-color-2-rgb), 0.1));
+    background: linear-gradient(135deg, 
+        rgba(var(--glow-color-1-rgb), 0.1), 
+        rgba(var(--glow-color-2-rgb), 0.1));
     opacity: 0;
     transition: opacity 0.3s ease;
     border-radius: 1.5rem;
@@ -580,7 +579,7 @@ body {
 
 .deck-card-container:hover {
     transform: translateY(-5px);
-    box-shadow:
+    box-shadow: 
         0 20px 40px -12px rgba(var(--glow-color-1-rgb), 0.25),
         0 8px 16px -8px rgba(var(--glow-color-2-rgb), 0.2);
 }
@@ -658,12 +657,15 @@ body.theme-dark .sapui5-logo-img {
     filter: invert(1);
 }
 
-/* --- TECH SHOWCASE: INFINITE SCROLLER --- */
+/* ================================================================
+// ===== START: UPDATED TECH SHOWCASE FOR TWO SCROLLING ROWS =====
+// ================================================================ */
 .tech-showcase-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    gap: 1.5rem; /* Add a gap between the two scrollers */
 }
 
 .tech-scroller {
@@ -682,7 +684,11 @@ body.theme-dark .sapui5-logo-img {
 }
 
 .tech-scroller[data-animated="true"] .tech-scroller-inner {
-    animation: scroll 60s linear infinite;
+    animation: scroll 40s linear infinite;
+}
+
+.tech-scroller[data-direction="reverse"] .tech-scroller-inner {
+    animation-direction: reverse;
 }
 
 .tech-scroller:hover .tech-scroller-inner {
@@ -691,7 +697,7 @@ body.theme-dark .sapui5-logo-img {
 
 @keyframes scroll {
     to {
-        transform: translate(calc(-50% - 1.25rem));
+        transform: translate(calc(-50% - 1.25rem)); /* 1.25rem is half the gap */
     }
 }
 
@@ -730,6 +736,10 @@ body.theme-dark .sapui5-logo-img {
     color: var(--heading-color);
     white-space: nowrap;
 }
+/* ================================================================
+// ===== END: UPDATED TECH SHOWCASE ===============================
+// ================================================================ */
+
 
 /* --- BENTO GRID --- */
 #projects .section-title {
@@ -754,9 +764,9 @@ body.theme-dark .sapui5-logo-img {
     border-radius: 1.5rem;
     overflow: hidden;
     text-decoration: none;
-    background: linear-gradient(135deg,
-            rgba(var(--glow-color-1-rgb), 0.08),
-            rgba(var(--glow-color-2-rgb), 0.08));
+    background: linear-gradient(135deg, 
+        rgba(var(--glow-color-1-rgb), 0.08), 
+        rgba(var(--glow-color-2-rgb), 0.08));
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     transform: translateY(20px);
@@ -769,9 +779,9 @@ body.theme-dark .sapui5-logo-img {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg,
-            rgba(var(--glow-color-1-rgb), 0.15),
-            rgba(var(--glow-color-2-rgb), 0.15));
+    background: linear-gradient(135deg, 
+        rgba(var(--glow-color-1-rgb), 0.15), 
+        rgba(var(--glow-color-2-rgb), 0.15));
     opacity: 0;
     transition: opacity 0.3s ease;
     border-radius: 1.5rem;
@@ -785,7 +795,7 @@ body.theme-dark .sapui5-logo-img {
 
 .bento-card:hover {
     transform: translateY(-5px);
-    box-shadow:
+    box-shadow: 
         0 20px 40px -12px rgba(var(--glow-color-1-rgb), 0.25),
         0 8px 16px -8px rgba(var(--glow-color-2-rgb), 0.2);
 }
@@ -899,10 +909,9 @@ body.theme-dark .sapui5-logo-img {
 }
 
 /* ================================================================== */
-/* ========= UPDATED & ENHANCED MEDIA QUERIES FOR RESPONSIVENESS ===== */
+/* ========= UPDATED MEDIA QUERIES FOR RESPONSIVENESS =============== */
 /* ================================================================== */
 
-/* For smaller tablets and large phones (landscape) */
 @media (max-width: 900px) {
     .bento-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -926,13 +935,12 @@ body.theme-dark .sapui5-logo-img {
     .card-title {
         font-size: 1.4rem;
     }
-
+    
     .card-paragraph {
         font-size: 1rem;
     }
 }
 
-/* For standard mobile devices (portrait and landscape tablets) */
 @media (max-width: 768px) {
     .main-content {
         padding: 0 1.5rem;
@@ -974,7 +982,7 @@ body.theme-dark .sapui5-logo-img {
         height: 48px;
     }
 
-    .contact-icon-link svg {
+     .contact-icon-link svg {
         width: 24px;
         height: 24px;
     }
@@ -994,11 +1002,11 @@ body.theme-dark .sapui5-logo-img {
     }
 
     .header-inner {
-        padding: 0.8rem 1.5rem;
+        padding: 0.8rem 1.5rem; /* More compact header padding */
     }
 
     .header-nav {
-        display: none;
+       display: none;
     }
 
     .deck-container {
@@ -1043,24 +1051,21 @@ body.theme-dark .sapui5-logo-img {
         grid-template-columns: 1fr;
     }
 
-    .col-span-1,
-    .col-span-2 {
+    .col-span-1, .col-span-2 {
         grid-column: span 1 / span 1;
         aspect-ratio: 16 / 12;
     }
 }
 
-/* For small mobile devices */
 @media (max-width: 480px) {
     .main-content {
         padding: 0 1rem;
     }
 
     .header-inner {
-        padding: 0.75rem 1rem;
+        padding: 0.6rem 1rem; /* Even more compact for small phones */
     }
 
-    /* Styles to shrink the header logo on small screens */
     .header-logo-img {
         width: 40px;
         height: 40px;
@@ -1078,7 +1083,7 @@ body.theme-dark .sapui5-logo-img {
         font-size: clamp(0.9rem, 4.5vw, 1rem);
     }
 
-    .contact-info-container {
+     .contact-info-container {
         gap: 1.25rem;
     }
 
@@ -1093,7 +1098,7 @@ body.theme-dark .sapui5-logo-img {
     }
 
     .deck-container {
-        min-height: 420px;
+       min-height: 420px;
     }
 
     .deck-card-container {
@@ -1102,7 +1107,7 @@ body.theme-dark .sapui5-logo-img {
         height: 400px;
     }
 
-    .card-content {
+     .card-content {
         padding: 1.25rem;
     }
 
@@ -1133,10 +1138,10 @@ body.theme-dark .sapui5-logo-img {
     }
 
     .tech-scroller {
-        -webkit-mask: linear-gradient(90deg, transparent, white 15%, white 85%, transparent);
-        mask: linear-gradient(90deg, transparent, white 15%, white 85%, transparent);
+      -webkit-mask: linear-gradient(90deg, transparent, white 15%, white 85%, transparent);
+      mask: linear-gradient(90deg, transparent, white 15%, white 85%, transparent);
     }
-
+    
     .tech-scroller-inner {
         gap: 1.5rem;
     }

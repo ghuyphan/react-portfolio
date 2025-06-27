@@ -36,6 +36,11 @@ interface HeaderProps {
 
 type Theme = 'dark' | 'light';
 
+interface Tech {
+    name: string;
+    component: JSX.Element;
+}
+
 // --- A REUSABLE HOOK FOR ANIMATING SECTIONS ON SCROLL ---
 const useIntersectionObserver = (options: IntersectionObserverInit) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -199,11 +204,6 @@ const cardsData: CardData[] = [
   { id: 'fpt', title: 'FPT Software (2022-Present)', content: 'Currently developing enterprise-grade solutions, from SAP Fiori apps to Salesforce Lightning Web Components. Focused on creating intuitive and maintainable systems.', icon: null, logo: <FptLogo /> },
 ].reverse();
 
-interface Tech {
-  name: string;
-  component: JSX.Element;
-}
-
 const technologies: Tech[] = [
   { name: 'HTML5', component: <HtmlLogo /> },
   { name: 'CSS3', component: <CssLogo /> },
@@ -226,8 +226,6 @@ const trans = (r: number, s: number) => `perspective(1500px) rotateX(30deg) rota
 
 
 // --- PAGE COMPONENTS ---
-
-// UPDATED: Removed fixed width/height and added a className for responsive styling
 const SimpleLogo: React.FC = () => (
   <img src={siteLogo} alt="Site Logo" className="header-logo-img" style={{ borderRadius: '6px' }} />
 );
@@ -279,7 +277,6 @@ function Deck() {
   const [gone] = useState(() => new Set());
   const [props, api] = useSprings(cardsData.length, i => ({ ...to(i), from: from(i) }));
 
-  // UPDATED: Added configuration to useDrag to prevent conflicts with vertical scrolling on mobile
   const bind = useDrag(
     ({ args: [index], active, movement: [mx], direction: [xDir], velocity: [vx] }) => {
       const trigger = vx > 0.2;
@@ -301,9 +298,9 @@ function Deck() {
       }
     },
     {
-      axis: 'x', // Only capture horizontal movement
-      filterTaps: true, // Ignore single taps
-      pointer: { touch: true }, // Apply this logic only to touch events
+      axis: 'x',
+      filterTaps: true,
+      pointer: { touch: true },
     }
   );
 
@@ -380,50 +377,73 @@ function ProjectsSection() {
     );
 }
 
+// ================================================================
+// ===== START: UPDATED TECH SHOWCASE FOR TWO SCROLLING ROWS =====
+// ================================================================
 
-const TechShowcase: React.FC = () => {
+// A new reusable Scroller component to keep our code clean
+const Scroller: React.FC<{ items: Tech[]; direction?: 'normal' | 'reverse' }> = ({ items, direction = 'normal' }) => {
     const scrollerRef = useRef<HTMLDivElement>(null);
-    const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
 
     useEffect(() => {
         const scroller = scrollerRef.current;
-        if (!scroller || scroller.getAttribute("data-animated")) return;
-
-        scroller.setAttribute("data-animated", "true");
-
-        const scrollerInner = scroller.querySelector('.tech-scroller-inner');
-        if (scrollerInner) {
-            const scrollerContent = Array.from(scrollerInner.children);
-            scrollerContent.forEach(item => {
-                const duplicatedItem = item.cloneNode(true) as HTMLElement;
-                duplicatedItem.setAttribute("aria-hidden", "true");
-                scrollerInner.appendChild(duplicatedItem);
-            });
+        // Prefers-reduced-motion check to disable animation for users who want it
+        if (!scroller || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
         }
-    }, []);
+        // Set attributes for CSS to control animation
+        scroller.setAttribute("data-animated", "true");
+        scroller.setAttribute("data-direction", direction);
+    }, [direction]);
+    
+    return (
+        <div className="tech-scroller" ref={scrollerRef}>
+            <div className="tech-scroller-inner">
+                {/* Render the items once */}
+                {items.map((tech) => (
+                    <div className="tech-item" key={tech.name}>
+                        <div className="tech-logo">{tech.component}</div>
+                        <span className="tech-name">{tech.name}</span>
+                    </div>
+                ))}
+                {/* Render them a second time for the infinite loop illusion */}
+                {items.map((tech) => (
+                    <div className="tech-item" key={`${tech.name}-clone`} aria-hidden="true">
+                        <div className="tech-logo">{tech.component}</div>
+                        <span className="tech-name">{tech.name}</span>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+const TechShowcase: React.FC = () => {
+    const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
+
+    // Split the technologies array into two halves
+    const middleIndex = Math.ceil(technologies.length / 2);
+    const firstRow = technologies.slice(0, middleIndex);
+    const secondRow = technologies.slice(middleIndex);
 
     return (
-        <section 
+        <section
             className={`content-section animated-section ${isVisible ? 'is-visible' : ''}`}
-            aria-label="Technologies I use" 
+            aria-label="Technologies I use"
             ref={sectionRef}
         >
             <div className="tech-showcase-container">
                 <h2 className="section-title">My Tech Stack</h2>
-                <div className="tech-scroller" ref={scrollerRef}>
-                    <div className="tech-scroller-inner">
-                        {technologies.map((tech) => (
-                            <div className="tech-item" key={tech.name}>
-                                <div className="tech-logo">{tech.component}</div>
-                                <span className="tech-name">{tech.name}</span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                <Scroller items={firstRow} direction="normal" />
+                <Scroller items={secondRow} direction="reverse" />
             </div>
         </section>
     );
 };
+// ================================================================
+// ===== END: UPDATED TECH SHOWCASE ===============================
+// ================================================================
+
 
 const HeroSection: React.FC = () => {
   const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
