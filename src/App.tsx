@@ -258,7 +258,7 @@ const ContactInfo: React.FC = () => (
   <div className="contact-info-container" id="contact">
     <a href="https://github.com/ghuyphan" target="_blank" rel="noopener noreferrer" className="contact-icon-link" aria-label="Github"><GithubIcon /></a>
     <a href="https://linkedin.com/in/giahuyphan" target="_blank" rel="noopener noreferrer" className="contact-icon-link" aria-label="LinkedIn"><LinkedInIcon /></a>
-    <a href="https://x.com/your_handle" target="_blank" rel="noopener noreferrer" className="contact-icon-link" aria-label="Twitter"><TwitterIcon /></a>
+    <a href="https://x.com/shorky_yy" target="_blank" rel="noopener noreferrer" className="contact-icon-link" aria-label="Twitter"><TwitterIcon /></a>
     <a href="mailto:giahuyphan0110@gmail.com" className="contact-icon-link" aria-label="Email"><MailIcon /></a>
   </div>
 );
